@@ -6,23 +6,25 @@
 feed=[]
 def encoder(log):
     if 'GET' in log:
-        feed.append(1)
+        feed.append(-0.8)
     elif 'anaconda' in log:
-        feed.append(2)
+        feed.append(-0.6)
     elif '[0m]' in log:
-        feed.append(3)
+        feed.append(-0.4)
     elif 'cron' in log.lower():
-        feed.append(4)
+        feed.append(-0.2)
     elif 'AH0' in log:
-        feed.append(5)
+        feed.append(0)
     elif 'ERROR:' in log:
-        feed.append(6)
+        feed.append(0.2)
     elif 'ambari-server' in log and 'cron' not in log.lower():
-        feed.append(7)
+        feed.append(0.4)
     elif 'Updated:' in log or 'Installed:' in log or 'Erased:' in log:
-        feed.append(8)
+        feed.append(0.6)
+    elif '':
+        feed.append()
     else:
-        feed.append(9)
+        feed.append(0.8)
 def capsule():
     log=input("Enter the log")
     while log:
@@ -118,4 +120,4 @@ def epochs(epochs):
     #Enter something to test the neural network
 #Enter number of epochs
 capsule()
-epochs(len(feed))   #Edit this
+epochs(len(feed))
